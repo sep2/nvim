@@ -72,6 +72,8 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+vim.api.nvim_set_keymap('v', 'p', 'P', { noremap = true })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -769,7 +771,7 @@ require('lazy').setup({
         enable = true,
         keymaps = {
           node_incremental = 'v',
-          node_decremental = 'V',
+          node_decremental = '<C-v>',
         },
       },
     },

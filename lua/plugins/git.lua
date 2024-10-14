@@ -1,5 +1,5 @@
--- https://www.reddit.com/r/neovim/comments/1ez1blr/comment/ljhp2zx
 local function open_log_at_buffer_or_visual_block()
+  -- https://www.reddit.com/r/neovim/comments/1ez1blr/comment/ljhp2zx
   local neogit = require 'neogit'
 
   local git_root = vim.fs.root(0, '.git')
@@ -61,16 +61,16 @@ return {
       -- Only one of these is needed.
       'nvim-telescope/telescope.nvim', -- optional
     },
-    config = function()
-      local neogit = require 'neogit'
+    init = function()
+      vim.keymap.set('n', '<leader>gg', function()
+        (require 'neogit').open()
+      end, { desc = '[G]it status' })
 
-      neogit.setup {
-        graph_style = 'unicode',
-      }
-
-      vim.keymap.set('n', '<leader>gg', neogit.open, { desc = '[G]it status' })
       vim.keymap.set({ 'n', 'v' }, '<leader>gl', open_log_at_buffer_or_visual_block, { desc = 'Git [l]og for selected? buffer' })
     end,
+    opts = {
+      graph_style = 'unicode',
+    },
   },
   {
     'lewis6991/gitsigns.nvim',
